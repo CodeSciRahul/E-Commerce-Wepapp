@@ -1,10 +1,6 @@
 import moongose from 'mongoose'
 
 const userSchema = new moongose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     username: {
         type: String,
         required: true
@@ -17,11 +13,11 @@ const userSchema = new moongose.Schema({
         type: String,
         required: true
     },
-    createdat: {
+    createdAt: {
         type: Date,
         default: Date.now
     },
-    updatedat:{
+    updatedAt:{
         type: Date,
         default: Date.now
     }

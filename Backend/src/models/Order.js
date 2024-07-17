@@ -1,15 +1,11 @@
 import mongoose from "mongoose";
-import OrderItem from "./OrderItem";
+import OrderItem from "./OrderItem.js";
 import User from "./User.js";
 import Saler from "./Saler.js";
 import CustomerAddress from "./CustomerAddress.js";
 
 
 const orderSchema = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     orderItems: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Orderitem',
@@ -20,7 +16,7 @@ const orderSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    saler: {
+    seller: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Saler',
         required: true

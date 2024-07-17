@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const customerAddressSchema = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     customerName: {
         type: String,
         required: true
@@ -22,11 +18,11 @@ const customerAddressSchema = new mongoose.Schema({
         required: true
     },
     customerPincode: {
-        type: Number,
+        type: String,
         required: true
     },
     customerPhone: {
-        type: Number,
+        type: String,
         required: true
     },
     createdAt: {
@@ -35,7 +31,8 @@ const customerAddressSchema = new mongoose.Schema({
     },
     updatedAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        ontimeupdate: Date.now
     }
 })
 

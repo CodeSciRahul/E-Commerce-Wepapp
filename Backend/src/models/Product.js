@@ -5,10 +5,6 @@ import Saler from "./Saler.js";
 
 
 const productSchema =  new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     productname: {
         type: String,
         required: true

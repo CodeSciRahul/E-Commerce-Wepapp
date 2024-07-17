@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const productvarientSchema = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     productSize: {
         type: String || Number,
         required: true

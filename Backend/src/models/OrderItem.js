@@ -3,10 +3,6 @@ import Product from './Product.js'
 
 
 const orderitemSchema = new mongoose.Schema({
-    _id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
-    },
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',
