@@ -1,5 +1,5 @@
 import { Error } from "mongoose";
-import Product from "../models/Product";
+import Product from "../models/Product.js";
 
 export class ProductService {
     //updatedProduct
@@ -18,7 +18,7 @@ export class ProductService {
     //creat new  Product
     async createNewProduct(productData){
         const newProduct = new Product(productData);
-        const saveProduct = newProduct.save();
+        const saveProduct = await newProduct.save();
 
         if(!newProduct) throw new Error("Product not created");
         return saveProduct
@@ -36,6 +36,13 @@ export class ProductService {
         const allProduct = await Product.find()
         if(!allProduct) throw new Error({message: "Product not get!"})
         return allProduct;
+    }
+
+    //delete Product
+    async deleteproduct(ProductId){
+        const deleteProduct = await Product.findByIdAndDelete(ProductId)
+        if(!deleteProduct) throw new Error({message: "Product not deleted!"});
+        return deleteProduct;
     }
 } 
 

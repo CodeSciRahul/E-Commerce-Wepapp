@@ -1,4 +1,4 @@
-import { ProductService } from "../services/productservice";
+import { ProductService } from "../services/productService.js";
 
 const productServices = new ProductService();
 
@@ -31,7 +31,7 @@ export const getsingleProduct = async (req, res) => {
     const singleProduct = await productServices.getSingleProduct(req.body.id);
     return res.status(200).send({
         data: singleProduct,
-        message: "Product get successfully!"
+        message: "Product get successfully by id!"
     })
   } catch (error) {
     if(error?.message === "Product not getting!"){
@@ -52,7 +52,7 @@ export const getsingleProduct = async (req, res) => {
 //create a new Product
 export const createProduct = async (req, res) => {
   try {
-    const createProduct = await productServices.createProduct(req.body);
+    const createProduct = await productServices.createNewProduct(req.body);
     return res.status(201).send({
       data: createProduct,
       message: "Product created successfully!",
@@ -98,3 +98,29 @@ export const updateProduct = async (req, res) => {
     });
   }
 };
+
+
+//delete Product
+export const deleteproduct = async(req,res) => {
+  try {
+    const deleteProduct = await productServices.deleteproduct(req.body.id);
+    return res.status(200).send({
+      data: deleteProduct,
+      message: "Product deleted successfully!"
+    })
+  } catch (error) {
+    if(error?.message === "Product not deleted!"){
+      return res.status(400).send({
+        data: null,
+        message: error.message
+      })
+    }
+    return res.status(500).send({
+      data: null,
+      message: "Internal server Error!"
+    })
+  }
+  
+
+
+}

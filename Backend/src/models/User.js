@@ -7,7 +7,8 @@ const userSchema = new moongose.Schema({
     },
     email: {
         type: String,
-        required:true
+        required:true,
+        unique: true
     },
     password: {
         type: String,
@@ -24,4 +25,4 @@ const userSchema = new moongose.Schema({
 
 })
 
-export default mongoose.model('User',userSchema)
+export default moongose.model('User',userSchema)

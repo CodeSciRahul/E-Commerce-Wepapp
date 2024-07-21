@@ -6,11 +6,11 @@ import CustomerAddress from "./CustomerAddress.js";
 
 
 const orderSchema = new mongoose.Schema({
-    orderItems: {
+    orderItems: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Orderitem',
         required: true
-    },
+    }],
     customer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

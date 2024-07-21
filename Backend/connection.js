@@ -1,12 +1,19 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
+import express from "express"
 
-export const mongodbConnect = mongoose.connect('mongodb://localhost:27017/ecommerce',{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
 
-const connection = mongoose.connection
+const app = express();
+const port = 5000;
 
-connection.once('open',()=>{
-    console.log('Database(mongoDb) connected to server')
-})
+export const MongodbConnect = async () => {
+    try {
+      await mongoose.connect("mongodb://localhost:27017/ecommerce",{
+        })
+        console.log("mongodb Connected Successfully")
+        app.listen(port , () => {
+            console.log("https://localhost:",port)
+        })
+    } catch (error) {
+        console.log("Could not Connect", error)
+    }
+}
