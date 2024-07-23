@@ -21,6 +21,10 @@ const productvarientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    productPrice: {
+        type: Number,
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

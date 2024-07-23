@@ -14,6 +14,9 @@ export const registerUser = async (req,res) => {
         if(error?.message ===  "Error register new user!"){
             return res.status(400).send({message: error.message});
         }
+        if(error?.message === "require all field"){
+            return res.status(400).send({message: error?.message})
+        }
         if(error?.message === "User already exist!") return res.status(400).send({message: error.message})
         console.log("console Errord "+ error?.stack)
         return res.status(500).send({message: "Internal Server Error!"});  
@@ -21,16 +24,16 @@ export const registerUser = async (req,res) => {
 }
 
 
-//get userdetail
-export const getUserDetail = async(req,res) => {
+//login
+export const getuserDetail = async(req,res) => {
     try {
-        const getUser = await userService.getUser(req.params.id);
+        const user = await userService.login(req.params.id);
         return res.status(200).send({
-            data: getUser,
-            message: "fetched user detail!"
+            user,
+            message: "detail got successfully!"
         })
     } catch (error) {
-        if(error?.message === "User not exist!"){
+        if(error?.message === "can not get userdata!"){
             return res.status(400).send({message: error.message})
         }
         return res.status(500).send({message: "Internal Server Error!"});

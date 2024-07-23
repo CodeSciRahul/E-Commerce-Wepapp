@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import ProductVarient from "./ProductVarient.js";
-import Saler from "./Saler.js";
+
 
 
 
@@ -17,11 +16,11 @@ const productSchema =  new mongoose.Schema({
         type: Number,
         required: true
     },
-    roductQuantity: {
+    productQuantity: {
         type: Number,
         required: true
     },
-    roductImage: {
+    productImage: {
         type: String,
         required: true
     },

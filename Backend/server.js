@@ -6,21 +6,21 @@ import {router} from "./src/routes/ProductRoute.js"
 import { CustomerAddressrouter } from './src/routes/CustomerAddressRoute.js'
 import { userRouter } from './src/routes/UserRoute.js'
 import { salerRouter } from './src/routes/SalerRoute.js'
+import 'dotenv/config'
 
 
 
 
 const app = express()
-const port = 5000;
+const port = process.env.port;
+const url = "mongodb://localhost:27017/ecommerce"
 
 app.use(cors())
 app.use(bodyParser.json())
 
 
 //Connect to mongodb 
-mongoose.connect("mongodb://localhost:27017/ecommerce", {
-
-})
+mongoose.connect(url, {})
 .then(()=> console.log("Connected to Mongodb Successfully!"))
 .catch((error) => console.log("Could not Connect to Mongodb",error));
 

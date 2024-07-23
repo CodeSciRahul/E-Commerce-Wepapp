@@ -1,9 +1,13 @@
 import User from "../models/User.js";
-import { Error } from "mongoose";
 
 export class UserService {
+
   //register User
   async registerUser(userDetail) {
+
+    const {username,email,password} = userDetail;
+    if(!(username && email && password)) throw new Error("require all field");
+
     const existUser = await User.findOne({ email: userDetail.email });
     if (existUser) {
       console.log("user exist!\n", existUser);
@@ -11,16 +15,19 @@ export class UserService {
     }
 
     const newUser = new User(userDetail);
-    const saveUser = await newUser.save();
-    if (!saveUser) throw new Error("Error register new user!");
-    return saveUser;
+    const savedUser = await newUser.save();
+
+    if (!savedUser) throw new Error("Error register new user!");
+    return savedUser;
   }
 
   //get user detail
-  async getUser(userId) {
-    const userData = await User.findById(userId);
-    if (!userData) throw new Error("User not exist!");
-    return userData;
+  async getuserDetail(userId) {
+    //getting  user detail
+    const user = await User.findById(userId)
+    
+    if(!user) throw new Error("can not get userdata!")
+    return user;
   }
 
   //update user detail
