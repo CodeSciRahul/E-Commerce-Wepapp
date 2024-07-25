@@ -1,26 +1,30 @@
 import jwt from "jsonwebtoken"
 import User from "../models/User.js"
 import "dotenv/config"
+import bcrypt from "bcrypt"
 
-const seceret_Key = process.env.seceretKey;
+const secret_Key = process.env.seceretKey;
 
 
 export const loginUser = async(userData) => {
 
-    //when user login, then verify there password and generate a token if the credentials are valied.
     const {email,password} = userData
     const user = await User.findOne({email});
     
     if(!(user?.email === email)) throw  Error("please give correct email id!")
-    if(!(user?.password === password)) throw  Error("password is wrong");
-    
+
+   const ispasswordmatch = await bcrypt.compare(password, user.password)
+   console.log(ispasswordmatch);
+   if(!ispasswordmatch) throw new Error("password mismatch");
+    //when user login, then verify there password and generate a token if the credentials are valied.
     const payload = {
-        userId: user._id,
-        email: user.email
+        user_id: user._id,
+        email: user.email,
     }
 
-    //generate a token
-    const token = jwt.sign(payload,seceret_Key,{expiresIn: "1h"});
-    if(!token) throw new Error("token can not generated!");
+    const token =jwt.sign(payload,secret_Key,{expiresIn: "1h"});
+    localStorage.setItem("token: ",token);
+    if(!token) throw new Error("token can not created");
     return token;
+
 }

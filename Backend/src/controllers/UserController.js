@@ -6,6 +6,7 @@ const userService = new UserService();
 export const registerUser = async (req,res) => {
     try {
         const newUser = await userService.registerUser(req.body);
+        console.log(newUser)
         return res.status(200).send(
             {data: newUser, 
             message: "User register successfully!"}
@@ -17,8 +18,10 @@ export const registerUser = async (req,res) => {
         if(error?.message === "require all field"){
             return res.status(400).send({message: error?.message})
         }
+        if(error?.message === "error while generating hashed password"){
+            return res.status(400).send({message: error.message});
+        }
         if(error?.message === "User already exist!") return res.status(400).send({message: error.message})
-        console.log("console Errord "+ error?.stack)
         return res.status(500).send({message: "Internal Server Error!"});  
     }
 }
