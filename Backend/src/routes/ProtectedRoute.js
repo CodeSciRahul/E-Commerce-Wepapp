@@ -1,7 +1,7 @@
 import express from "express"
-import { authenticateJwt } from "../middlewares/AuthMiddleware.js"
+import {authenticateJwt} from "../middlewares/AuthMiddleware.js"
 import { loginController } from "../controllers/AuthController.js"
 
-export const router = express.Router();
+export const protectRoute = express.Router();
 
-router.get("/user/:id",authenticateJwt,loginController);
+protectRoute.get("/user/:id",authenticateJwt,loginController);

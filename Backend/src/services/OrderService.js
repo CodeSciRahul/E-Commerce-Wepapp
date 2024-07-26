@@ -19,6 +19,14 @@ export class OrderService {
             newOrderitem,
             newOrder
         };
+    }
+    //update order
+    async updateOrder(orderId){
+        //logic
+    }
 
+    //delete order
+    async deleteOrder(orderId){
+        //logic
     }
 }

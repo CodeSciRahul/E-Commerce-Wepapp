@@ -14,7 +14,6 @@ export const loginUser = async(userData) => {
     if(!(user?.email === email)) throw  Error("please give correct email id!")
 
    const ispasswordmatch = await bcrypt.compare(password, user.password)
-   console.log(ispasswordmatch);
    if(!ispasswordmatch) throw new Error("password mismatch");
     //when user login, then verify there password and generate a token if the credentials are valied.
     const payload = {
@@ -23,7 +22,7 @@ export const loginUser = async(userData) => {
     }
 
     const token =jwt.sign(payload,secret_Key,{expiresIn: "1h"});
-    localStorage.setItem("token: ",token);
+    console.log(token);
     if(!token) throw new Error("token can not created");
     return token;
 
