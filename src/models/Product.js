@@ -4,23 +4,23 @@ import mongoose from "mongoose";
 
 
 const productSchema =  new mongoose.Schema({
-    productname: {
+    name: {
         type: String,
         required: true
     },
-    productDescription: {
+    Description: {
         type: String,
         required: true
     },
-    productPrice: {
+    Price: {
         type: Number,
         required: true
     },
-    productQuantity: {
+    Quantity: {
         type: Number,
         required: true
     },
-    productImage: {
+    Image: {
         type: String,
         required: true
     },

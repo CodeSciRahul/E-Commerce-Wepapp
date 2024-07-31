@@ -18,15 +18,19 @@ const orderSchema = new mongoose.Schema({
         ref: 'CustomerAddress',
         required: true
     },
+    totalPrice: {
+        type: Number,
+        required: true
+    },
+    orderStatus: {
+        type: String,
+        enum: ["pending","shipped","delivered","Cancelled"],
+        default: "pending"
+    },
     orderDate: {
         type: Date,
         default: Date.now
     },
-    orderStatus: {
-        type: String,
-        enum: ["pending","shipped","delivered"],
-        default: "pending"
-    }
 })
 
 export default mongoose.model('Order',orderSchema)

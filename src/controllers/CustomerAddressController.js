@@ -5,6 +5,7 @@ const customerAddress = new CustomerAddressService();
 export const createAddress = async(req,res) => {
     try {
         const createAddress = await customerAddress.CreateCustomerAddress(req.body)
+        console.log(createAddress);
         return res.status(200).send({
             data: createAddress,
             message: "Address get Successfully"
@@ -16,6 +17,7 @@ export const createAddress = async(req,res) => {
                 message: error.message
             })
         }
+
         return res.status(500).send({
             data: null,
             message: "Internal Server Error!"
@@ -30,7 +32,7 @@ export const getAddress = async(req,res) => {
     try {
         const getAddress = await customerAddress.getCustomerAddress(req.params.id);
         return res.status(200).send({
-            data: null,
+            data: getAddress,
             message: "Address get successfully!"
         })
     } catch (error) {

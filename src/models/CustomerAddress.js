@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
 const customerAddressSchema = new mongoose.Schema({
-    customerName: {
-        type: String,
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
     customerAddress: {
@@ -32,8 +33,13 @@ const customerAddressSchema = new mongoose.Schema({
     updatedAt: {
         type: Date,
         default: Date.now,
-        ontimeupdate: Date.now
     }
-})
+    
+});
+
+customerAddressSchema.pre('save', function (next) {
+    this.updatedAt = Date.now();
+    next();
+});
 
 export default mongoose.model('CustomerAddress',customerAddressSchema)

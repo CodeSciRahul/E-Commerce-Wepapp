@@ -1,5 +1,4 @@
 import CustomerAddress from "../models/CustomerAddress.js"
-import { Error } from "mongoose"
 
 
 export class CustomerAddressService {
@@ -7,15 +6,16 @@ export class CustomerAddressService {
 
     //create an address
     async CreateCustomerAddress(address){
-        const createAddress = new CustomerAddress(address);
+        const createAddress =  new CustomerAddress(address);
         const saveAddress =await createAddress.save();
+        console.log(saveAddress);
         if(!saveAddress) throw new Error("Address can not created!");
         return saveAddress;
     }
 
     //get an address of single Customer
-    async getCustomerAddress(customerId){
-        const getAddress = await CustomerAddress.find(customerId);
+    async getCustomerAddress(userid){
+        const getAddress = await CustomerAddress.find({userId:userid}).populate('userId', 'username email');
         if(!getAddress) throw new Error("Address can not get!");
         return getAddress;
     }

@@ -4,8 +4,8 @@ import express from "express"
 export const CustomerAddressrouter = express.Router();
 
 
-CustomerAddressrouter.route("/")
-.post(createAddress)
+CustomerAddressrouter.post("/",createAddress)
+CustomerAddressrouter.route("/:id")
 .get(getAddress)
 .put(updateAddress)
-.delete(deleteAddress);
+.delete(deleteAddress)

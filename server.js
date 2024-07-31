@@ -6,6 +6,7 @@ import {router} from "./src/routes/ProductRoute.js"
 import { CustomerAddressrouter } from './src/routes/CustomerAddressRoute.js'
 import { userRouter } from './src/routes/UserRoute.js'
 import { salerRouter } from './src/routes/SalerRoute.js'
+import { orderRouter } from './src/routes/OrderRoute.js'
 import 'dotenv/config'
 
 
@@ -35,7 +36,7 @@ app.use("/api/product",router)
 app.use("/api/user-address",CustomerAddressrouter)
 app.use("/api/user",userRouter)
 app.use("/api/saler",salerRouter)
-
+app.use("/api/order",orderRouter);
 
 app.listen(port, ()=> {console.log(`http://localhost:${port}`)});
 
