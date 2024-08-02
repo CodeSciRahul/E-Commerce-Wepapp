@@ -1,6 +1,6 @@
 import mongoose  from "mongoose";
 
-const salerSchema = new mongoose.Schema({
+const sellerStoreSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -40,4 +40,4 @@ const salerSchema = new mongoose.Schema({
     }
 })
 
-export default mongoose.model('Saler',salerSchema)
+export default mongoose.model('SellerStore',sellerStoreSchema)

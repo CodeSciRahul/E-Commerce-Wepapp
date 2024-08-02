@@ -14,6 +14,11 @@ const userSchema = new moongose.Schema({
         type: String,
         required: true
     },
+    roles: {
+        type: [String],
+        enum: ['customer','seller'],
+        default: ['customer']
+    },
     createdAt: {
         type: Date,
         default: Date.now

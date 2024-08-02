@@ -1,4 +1,5 @@
 import CustomerAddress from "../models/CustomerAddress.js"
+import User from "../models/User.js"
 
 
 export class CustomerAddressService {
@@ -6,11 +7,12 @@ export class CustomerAddressService {
 
     //create an address
     async CreateCustomerAddress(address){
-        const createAddress =  new CustomerAddress(address);
-        const saveAddress =await createAddress.save();
-        console.log(saveAddress);
-        if(!saveAddress) throw new Error("Address can not created!");
-        return saveAddress;
+        const {userId} = address
+        const idexist =  await User.exists({_id: userId});
+        if(!idexist) throw new Error("userId does not exist");
+        const createAddress =  CustomerAddress.create(address);
+        if(!createAddress) throw new Error("Address can not created!");
+        return createAddress;
     }
 
     //get an address of single Customer

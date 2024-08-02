@@ -1,21 +1,17 @@
-import { SalerService } from "../services/SalerService.js";
+import { SellerStoreService } from "../services/SellerStoreService.js";
 
-const salerService = new SalerService();
+const sellerStoreService = new SellerStoreService();
 
 
 //registerSaler
-export const registerSaler = async(req,res) => {
+export const registerSeller = async(req,res) => {
     try {
-        const newSaler = await salerService.registerSaler(req.body);
+        const newSaler = await sellerStoreService.registerSeller(req.body);
         return res.status(200).send({
             data: newSaler,
             message: "user registered successfuly!"
         })
     } catch (error) {
-        if(error?.message === "Saler already exist!"){
-            return res.status(400).send({message: error.message});
-
-        }
         if(error?.message === "registration failed!"){
             return res.status(400).send({message: error.message})
         }
@@ -26,9 +22,9 @@ export const registerSaler = async(req,res) => {
 }
 
 //getuserdetail
-export const getSaler = async(req,res) => {
+export const getSeller = async(req,res) => {
     try {
-        const userData = await salerService.getSalerDetail(req.params.id);
+        const userData = await sellerStoreService.getSellerDetail(req.params.id);
         return res.status(200).send({
             data: userData,
             message: "user data fetched successfully!"
@@ -42,9 +38,9 @@ export const getSaler = async(req,res) => {
 }
 
 //updatedetail
-export const updateSaler = async(req,res) => {
+export const updateSeller = async(req,res) => {
     try {
-        const updateDetail = await salerService.updateSalerDetail(req.params.id, req.body);
+        const updateDetail = await sellerStoreService.updateSellerDetail(req.params.id, req.body);
         return res.status(200).send({
             data: updateDetail,
             message: "saler updated successfully!"
@@ -59,9 +55,9 @@ export const updateSaler = async(req,res) => {
 }
 
 //deletedetail
-export const deleteSaler = async(req,res) => {
+export const deleteSeller = async(req,res) => {
     try {
-        const deleteDetail = await salerService.deleteSealerDetail(req.params.id);
+        const deleteDetail = await sellerStoreService.deleteSellerDetail(req.params.id);
         return res.status(200).send({data: deleteDetail, message: "saler account deleted successfully!"});
     } catch (error) {
         if(error.message === "saler can not be deleted!"){

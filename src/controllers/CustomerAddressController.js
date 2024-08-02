@@ -17,6 +17,12 @@ export const createAddress = async(req,res) => {
                 message: error.message
             })
         }
+        if(error?.message === "userId does not exist"){
+            return res.status(400).send({
+                data: null,
+                message: error.message
+            })
+        }
 
         return res.status(500).send({
             data: null,
