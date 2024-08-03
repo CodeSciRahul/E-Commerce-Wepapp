@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
 import Creato from "../assets/react.svg";
 import Background from "../assets/react.svg";
 import toast from "react-hot-toast";
-import { Label } from "@/components/ui/label"
 
-export function Login() {
-  const handlelogin = () => {
-    toast.success("Login Successful");
+export function Signup() {
+  const handleSignup = () => {
+    toast.success("Successfully Account created");
   };
   return (
     <div className="w-full flex justify-between items-center overflow-hidden">
@@ -17,16 +17,26 @@ export function Login() {
         <img src={Creato} className=" w-[80px] rounded-[50%]" alt="" />
       </div>
 
-      <div className="lg:max-w-[60vw] my-auto mx-auto px-3">
+      <div className="lg:min-w-[30%] my-auto mx-auto px-3">
         <div className="text-center py-6">
-          <h1 className="text-3xl font-bold py-4">Login</h1>
+          <h1 className="text-3xl font-bold py-4">Signup</h1>
           <p className="text-balance text-muted-foreground">
-            Enter your email below to login to your account
+            Set up your account to start using Creato
           </p>
         </div>
 
         <form className="py-4">
           <div className="grid gap-5">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Username</Label>
+              <Input
+                id="Username"
+                type="Username"
+                placeholder="john_doe"
+                required
+                autoComplete="username"
+              />
+            </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -55,24 +65,24 @@ export function Login() {
                 Forgot your password?
               </Link>
             </div>
-            <Button type="submit" className="w-full bg-secondary" onClick={handlelogin}>
-              Login
+            <Button type="submit" className="w-full bg-secondary" onClick={handleSignup}>
+              Signup
             </Button>
             <Button variant="outline" className="w-full">
-              Login with Google
+              Sign up with Google
             </Button>
           </div>
         </form>
 
         <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link to="/signup" className="underline">
-            Sign up
+          have an account?{" "}
+          <Link to="/login" className="underline">
+            login
           </Link>
         </div>
       </div>
 
-      <div className="hidden lg:block overflow-hidden w-[65%] h-[100vh] bg-primary">
+      <div className="hidden lg:block overflow-hidden w-[60%] h-[100vh] bg-primary">
         <img
           src={Background}
           alt="Background Image"
